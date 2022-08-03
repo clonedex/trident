@@ -5,31 +5,31 @@ import type { MasterDeployer } from "../types";
 
 task("cpp-verify", "Constant Product Pool verify")
   .addOptionalParam(
-    "tokenA",
+    "token0",
     "Token A",
     WETH9_ADDRESS[ChainId.OPTIMISM], // kovan weth
     types.string
   )
   .addOptionalParam(
-    "tokenB",
+    "token1",
     "Token B",
     DAI_ADDRESS[ChainId.OPTIMISM], // kovan dai
     types.string
   )
   .addOptionalParam("fee", "Fee tier", 30, types.int)
-  .addOptionalParam("twap", "Twap enabled", false, types.boolean)
-  .setAction(async function ({ tokenA, tokenB, fee, twap }, { ethers, run }) {
-    console.log(`Verify cpp tokenA: ${tokenA} tokenB: ${tokenB} fee: ${fee} twap: ${twap}`);
+  .addOptionalParam("twap", "Twap enabled", true, types.boolean)
+  .setAction(async function ({ token0, token1, fee, twap }, { ethers, run }) {
+    console.log(`Verify cpp tokenA: ${token0} tokenB: ${token1} fee: ${fee} twap: ${twap}`);
 
     const masterDeployer = await ethers.getContract<MasterDeployer>("MasterDeployer");
 
-    const address = await run("cpp-address", { tokenA, tokenB, fee, twap });
+    const address = await run("cpp-address", { token0, token1, fee, twap });
 
     console.log(`Verify cpp ${address}`);
 
     const deployData = ethers.utils.defaultAbiCoder.encode(
       ["address", "address", "uint256", "bool"],
-      [...[tokenA, tokenB].sort(), fee, twap]
+      [...[token0, token1].sort(), fee, twap]
     );
 
     await run("verify:verify", {

@@ -4,13 +4,13 @@ import { ConstantProductPoolFactory, MasterDeployer } from "../types";
 
 task("cpp-deploy", "Constant Product Pool deploy")
   .addOptionalParam(
-    "tokenA",
+    "token0",
     "Token A",
     WNATIVE_ADDRESS[ChainId.MATIC], // kovan weth
     types.string
   )
   .addOptionalParam(
-    "tokenB",
+    "token1",
     "Token B",
     USDC_ADDRESS[ChainId.MATIC], // kovan dai
     types.string
@@ -18,7 +18,7 @@ task("cpp-deploy", "Constant Product Pool deploy")
   .addOptionalParam("fee", "Fee tier", 30, types.int)
   .addOptionalParam("twap", "Twap enabled", true, types.boolean)
   .addOptionalParam("verify", "Verify", true, types.boolean)
-  .setAction(async function ({ tokenA, tokenB, fee, twap, verify }, { ethers, run }) {
+  .setAction(async function ({ token0, token1, fee, twap, verify }, { ethers, run }) {
     const masterDeployer = await ethers.getContract<MasterDeployer>("MasterDeployer");
 
     const constantProductPoolFactory = await ethers.getContract<ConstantProductPoolFactory>(
@@ -27,25 +27,25 @@ task("cpp-deploy", "Constant Product Pool deploy")
 
     const deployData = ethers.utils.defaultAbiCoder.encode(
       ["address", "address", "uint256", "bool"],
-      [...[tokenA, tokenB].sort(), fee, twap]
+      [...[token0, token1].sort(), fee, twap]
     );
 
-    console.log([...[tokenA, tokenB].sort(), fee, twap], {
+    console.log([...[token0, token1].sort(), fee, twap], {
       factory: constantProductPoolFactory.address,
       deployData,
     });
 
-    // console.log("1", [...[tokenA, tokenB].sort(), fee, twap]);
-    // const contractTransaction = await masterDeployer.deployPool(constantProductPoolFactory.address, deployData);
+    // console.log("1", [...[token0, token1].sort(), fee, twap]);
+    const contractTransaction = await masterDeployer.deployPool(constantProductPoolFactory.address, deployData);
     // console.log("2");
-    // if (!verify) return;
+    if (!verify) return;
 
-    // const contractReceipt = await contractTransaction.wait(5);
+    const contractReceipt = await contractTransaction.wait(5);
 
-    // const { events } = contractReceipt;
+    const { events } = contractReceipt;
 
-    // await run("verify:verify", {
-    //   address: events?.[0].args?.pool,
-    //   constructorArguments: [deployData, masterDeployer.address],
-    // });
+    await run("verify:verify", {
+      address: events?.[0].args?.pool,
+      constructorArguments: [],
+    });
   });

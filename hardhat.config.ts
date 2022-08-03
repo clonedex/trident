@@ -63,7 +63,7 @@ const config: HardhatUserConfig = {
       default: 0,
     },
     dev: {
-      default: 1,
+      default: 0,
     },
     alice: {
       default: 2,
