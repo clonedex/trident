@@ -28,12 +28,12 @@ deployFunction.dependencies = ["WETH9"];
 
 deployFunction.tags = ["BentoBoxV1"];
 
-// deployFunction.skip = ({ getChainId }) =>
-//   new Promise(async (resolve, reject) => {
-//     try {
-//       const chainId = await getChainId();
-//       resolve(chainId !== "31337");
-//     } catch (error) {
-//       reject(error);
-//     }
-//   });
+deployFunction.skip = ({ getChainId }) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const chainId = await getChainId();
+      resolve(chainId !== "31337");
+    } catch (error) {
+      reject(error);
+    }
+  });

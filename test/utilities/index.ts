@@ -1,5 +1,5 @@
 import { BigNumber } from "@ethersproject/bignumber";
-import { ONE } from "@sushiswap/core-sdk";
+import { ONE } from "@clonedex/core-sdk";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import type { ERC20Mock } from "../../types";

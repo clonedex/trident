@@ -1,4 +1,4 @@
-import { ChainId, WETH9_ADDRESS, USDC_ADDRESS, WNATIVE_ADDRESS } from "@sushiswap/core-sdk";
+import { ChainId, WETH9_ADDRESS, USDC_ADDRESS, WNATIVE_ADDRESS } from "@clonedex/core-sdk";
 import { task, types } from "hardhat/config";
 import { ConstantProductPoolFactory, MasterDeployer } from "../types";
 
@@ -43,9 +43,4 @@ task("cpp-deploy", "Constant Product Pool deploy")
     const contractReceipt = await contractTransaction.wait(5);
 
     const { events } = contractReceipt;
-
-    await run("verify:verify", {
-      address: events?.[0].args?.pool,
-      constructorArguments: [],
-    });
   });

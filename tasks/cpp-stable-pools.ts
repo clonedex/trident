@@ -1,4 +1,4 @@
-import { DAI_ADDRESS, USDC_ADDRESS, USDT_ADDRESS, WNATIVE_ADDRESS } from "@sushiswap/core-sdk";
+import { DAI_ADDRESS, USDC_ADDRESS, USDT_ADDRESS, WNATIVE_ADDRESS } from "@clonedex/core-sdk";
 import { task, types } from "hardhat/config";
 
 task("cpp-stable-pools", "Generate stable pool addresses")

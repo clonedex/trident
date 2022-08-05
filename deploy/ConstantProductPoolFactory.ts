@@ -18,23 +18,12 @@ const deployFunction: DeployFunction = async function ({
     from: deployer,
     deterministicDeployment: false,
     args: [masterDeployer.address],
-    waitConfirmations: process.env.VERIFY_ON_DEPLOY === "true" ? 10 : undefined,
+    log: true,
   });
 
   if (!(await masterDeployer.whitelistedFactories(address))) {
     console.debug("Add ConstantProductPoolFactory to MasterDeployer whitelist");
     await (await masterDeployer.addToWhitelist(address)).wait();
-  }
-
-  if (newlyDeployed && process.env.VERIFY_ON_DEPLOY === "true") {
-    try {
-      await run("verify:verify", {
-        address,
-        constructorArguments: [masterDeployer.address],
-      });
-    } catch (error) {
-      console.error(error);
-    }
   }
 };
 

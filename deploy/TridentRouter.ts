@@ -1,4 +1,4 @@
-import { BENTOBOX_ADDRESS, WNATIVE_ADDRESS } from "@sushiswap/core-sdk";
+import { BENTOBOX_ADDRESS, WNATIVE_ADDRESS } from "@clonedex/core-sdk";
 import { BentoBoxV1, MasterDeployer, WETH9 } from "../types";
 
 import { DeployFunction } from "hardhat-deploy/types";
@@ -39,24 +39,8 @@ const deployFunction: DeployFunction = async function ({
       wnative ? wnative.address : WNATIVE_ADDRESS[chainId],
     ],
     deterministicDeployment: false,
-    waitConfirmations: process.env.VERIFY_ON_DEPLOY === "true" ? 10 : undefined,
+    log: true,
   });
-
-  if (newlyDeployed && process.env.VERIFY_ON_DEPLOY === "true") {
-    try {
-      await run("verify:verify", {
-        address,
-        constructorArguments: [
-          bentoBox ? bentoBox.address : BENTOBOX_ADDRESS[chainId],
-          masterDeployer.address,
-          wnative ? wnative.address : WNATIVE_ADDRESS[chainId],
-        ],
-        contract: "contracts/TridentRouter.sol:TridentRouter",
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   // Avoid needing to whitelist master contract in fixtures
   if (chainId === 31337 && !(await bentoBox?.whitelistedMasterContracts(address))) {

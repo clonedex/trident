@@ -1,4 +1,4 @@
-import { ChainId, USDC_ADDRESS, WETH9_ADDRESS, WNATIVE_ADDRESS } from "@sushiswap/core-sdk";
+import { ChainId, USDC_ADDRESS, WETH9_ADDRESS, WNATIVE_ADDRESS } from "@clonedex/core-sdk";
 import { task, types } from "hardhat/config";
 
 task("cpp-address", "Constant Product Pool deploy")

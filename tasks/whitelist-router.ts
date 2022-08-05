@@ -1,6 +1,6 @@
 import type { BentoBoxV1, BentoBoxV1__factory, TridentRouter } from "../types";
 
-import { BENTOBOX_ADDRESS } from "@sushiswap/core-sdk";
+import { BENTOBOX_ADDRESS } from "@clonedex/core-sdk";
 import { task } from "hardhat/config";
 
 task("whitelist", "Whitelist Router on BentoBox").setAction(async function (_, { ethers, getChainId }) {

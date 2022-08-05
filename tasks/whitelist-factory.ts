@@ -1,4 +1,4 @@
-import { BENTOBOX_ADDRESS } from "@sushiswap/core-sdk";
+import { BENTOBOX_ADDRESS } from "@clonedex/core-sdk";
 import type { MasterDeployer } from "../types";
 import { task } from "hardhat/config";
 

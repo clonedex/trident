@@ -1,4 +1,4 @@
-import { BENTOBOX_ADDRESS, ChainId, WNATIVE, WNATIVE_ADDRESS } from "@sushiswap/core-sdk";
+import { BENTOBOX_ADDRESS, ChainId, WNATIVE, WNATIVE_ADDRESS } from "@clonedex/core-sdk";
 
 import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";

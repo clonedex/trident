@@ -1,4 +1,4 @@
-import { BENTOBOX_ADDRESS, ChainId, WETH9_ADDRESS } from "@sushiswap/core-sdk";
+import { BENTOBOX_ADDRESS, ChainId, WETH9_ADDRESS } from "@clonedex/core-sdk";
 import type { BentoBoxV1, BentoBoxV1__factory } from "../types";
 
 import { task } from "hardhat/config";

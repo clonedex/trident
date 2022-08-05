@@ -1,4 +1,4 @@
-import { ChainId, DAI_ADDRESS, USDC_ADDRESS, WETH9_ADDRESS } from "@sushiswap/core-sdk";
+import { ChainId, DAI_ADDRESS, USDC_ADDRESS, WETH9_ADDRESS } from "@clonedex/core-sdk";
 import { task, types } from "hardhat/config";
 
 import type { MasterDeployer } from "../types";

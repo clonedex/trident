@@ -79,13 +79,12 @@
     "@codechecks/client": "^0.1.12",
     "@ethersproject/address": "^5.5.0",
     "@ethersproject/solidity": "^5.5.0",
-    "@nomiclabs/hardhat-ethers": "yarn:hardhat-deploy-ethers",
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "@nomiclabs/hardhat-solhint": "^2.0.0",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "^4.4.1",
     "@rari-capital/solmate": "6.2.0",
-    "@sushiswap/core-sdk": "1.0.0-canary.121",
+    "@clonedex/core-sdk": "1.0.1",
     "@sushiswap/prettier-config": "^0.1.0",
     "@sushiswap/sdk": "5.0.0-canary.116",
     "@sushiswap/tines": "1.0.0-canary.16",
@@ -128,5 +127,8 @@
     "ts-node": "^10.4.0",
     "typechain": "^6.1.0",
     "typescript": "^4.5.4"
+  },
+  "resolutions": {
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13"
   }
 }

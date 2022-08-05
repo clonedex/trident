@@ -20,8 +20,9 @@ import { HardhatUserConfig } from "hardhat/config";
 import { removeConsoleLog } from "hardhat-preprocessor";
 
 // const accounts = [process.env.DEPLOYER_KEY || "0x00"];
+const pkey = process.env.PRIVATE_KEY || "your private key";
 const accounts = {
-  mnemonic: process.env.MNEMONIC || "test test test test test test test test test test test junk",
+  mnemonic: process.env.MNEMONIC || "sniff volume mass analyst manage around gate entire rack mansion express used",
 };
 
 const config: HardhatUserConfig = {
@@ -61,9 +62,13 @@ const config: HardhatUserConfig = {
   namedAccounts: {
     deployer: {
       default: 0,
+      3501: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
+      3502: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
     },
     dev: {
       default: 0,
+      3501: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
+      3502: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
     },
     alice: {
       default: 2,
@@ -82,9 +87,13 @@ const config: HardhatUserConfig = {
     },
     feeTo: {
       default: 7,
+      3501: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
+      3502: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
     },
     barFeeTo: {
       default: 8,
+      3501: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
+      3502: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
     },
   },
   networks: {
@@ -182,6 +191,18 @@ const config: HardhatUserConfig = {
       url: "https://rpc.xdaichain.com",
       accounts,
       chainId: 100,
+      live: true,
+      saveDeployments: true,
+    },
+    jfin: {
+      url: "https://rpc.jfinchain.com",
+      accounts: [`0x${pkey}`],
+      live: true,
+      saveDeployments: true,
+    },
+    "jfin-testnet": {
+      url: "https://rpc.testnet.jfinchain.com",
+      accounts: [`0x${pkey}`],
       live: true,
       saveDeployments: true,
     },
